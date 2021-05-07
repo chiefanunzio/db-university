@@ -1,0 +1,73 @@
+Ogni dipartimento e' composto da corsi di laura, formati da corsi, gestiti da insegnanti, che prevedono appelli per studenti, che avranno un esito finale
+
+- DIPARTIMENTO
+
+    nome_dipartimento: VARCHAR; NOT NULLABLE
+    descrizione_dipartimento: TEXT;NOT NULLABLE  (incluse info vari corsi)
+    regole_generali:TEXT;NOT NULLABLE
+    sede: VARCHAR(128) ; NOT NULLABLE
+    contatti_segreterie: VARCHAR; NOT NULLABLE
+
+- CORSO DI LAUREA
+
+    indirizzo_corso:VARCHAR;NOT NULLABLE
+    presenza_minima_ammissione: TINYINT;NOT NULLABLE
+    luogo_aula:VARCHAR;NULLABLE   (potrebbe cambiare da vari fattori )
+    punti_di_credito-massimi:TINYINT;DEFAULT(0)
+    numero_corsi:TINYINT;NOT NULLABLE
+
+
+- CORSO
+
+    esami_corso: VARCHAR(128) ; NOT NULLABLE
+    calendario_lezioni: VARCHAR(128) ; NOT NULLABLE
+    numero_studenti:TINYINT;DEFAULT(0)
+
+    
+
+- INSEGNANTE
+
+    nome: VARCHAR(64) ; NOT NULLABLE
+    cognome: VARCHAR(64) ; NOT NULLABLE
+    indirizzo: VARCHAR ; NOT NULLABLE
+    email: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+    n_tel: VARCHAR(32) ; NULLABLE 
+    data_nascita: DATE ; NOT NULLABLE
+    luogo_nascita: VARCHAR(64) ; NOT NULLABLE
+    cf: VARCHAR(64) ; NOT NULLABLE ; UNIQUE
+    data_assunzione: DATE ; NOT NULLABLE
+    ruolo: VARCHAR(32) ; NOT NULLABLE
+    salario: INT ; NOT NULLABLE 
+    tipo_contratto: VARCHAR(64) ; NOT NULLABLE
+    materia: VARCHAR(32) ; NOT NULLABLE
+
+- APPELLO
+
+    matricola_studente: INT; NOT NULLABLE
+    data_appello: DATE ; NOT NULLABLE
+    materia: VARCHAR(64) ; NOT NULLABLE
+    voto: TINYINT ; NOT NULLABLE
+    
+
+- STUDENTE
+
+    numero_matricola: INT; NOT NULLABLE;UNIQUE
+    nome: VARCHAR(64) ; NOT NULLABLE
+    cognome: VARCHAR(64) ; NOT NULLABLE
+    indirizzo: VARCHAR ; NOT NULLABLE
+    email: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+    tel: VARCHAR(32) ; NULLABLE 
+    data_nascita: DATE ; NOT NULLABLE
+    luogo_nascita: VARCHAR(64) ; NOT NULLABLE
+    cf: VARCHAR(64) ; NOT NULLABLE ; UNIQUE
+    genere: VARCHAR(16) ; NOT NULLABLE 
+    tipo_documento: VARCHAR(16) ; NOT NULLABLE 
+    numero_documento: VARCHAR(32) ; NOT NULLABLE ; UNIQUE
+
+- ESITO
+
+    totale_esami: TINYINT ; NOT NULLABLE
+    totale_presenze: TINYINT ; NOT NULLABLE
+    media_voti: TINYINT ; NOT NULLABLE
+    punti_di_credito:TINYINT;DEFAULT(0)
+    laurea_in: VARCHAR(10) ; NOT NULLABLE
